@@ -8,7 +8,7 @@ import sys
 # Example output: 3 files: 1-13, 14-35 and 36-last
 #
 
-with open(sys.argv[1]) as original_file:
+with open(sys.argv[1], 'rb') as original_file:
   reader = PdfFileReader(original_file)
   number_of_cuts = int(sys.argv[2])
   starting_page = 0
