@@ -1,12 +1,21 @@
 from tkinter import *
 from tkinter import filedialog
 
-def add_file():
-  filename = filedialog.askopenfilename()
-  print('Added: ', filename)
+filenames = []
 
-def show_merger_dialog():
-  window = Tk()
-  add_button = Button(window, text="Add file", command=add_file)
+def show_merge_button(root):
+
+
+def add_file(root):
+  filename = filedialog.askopenfilename()
+  file_label = Text(root, height=1, width=30)
+  file_label.pack()
+  file_label.insert(END, filename)
+  filenames.add(filename)
+  if(len(filenames) == 2):
+    show_merge_button(root)
+
+def show_merger_dialog(root):
+  merger_gui_window = Toplevel(root)
+  add_button = Button(merger_gui_window, text="Add file", command=lambda: add_file(merger_gui_window))
   add_button.pack()
-  window.mainloop()
