@@ -6,10 +6,10 @@ import sys
 # Example input: python merger.py file1.pdf file2.pdf file3.pdf
 # Program output: Merged file
 #
+def merge_files(file_list):
+  merger = PdfFileMerger()
 
-merger = PdfFileMerger()
+  for element in file_list:
+    merger.append(PdfFileReader(open(element, 'rb')))
 
-for i in range(1, len(sys.argv)):
-  merger.append(PdfFileReader(open(sys.argv[i], 'rb')))
-
-merger.write("merged_file.pdf")
+  merger.write("merged_file.pdf")
