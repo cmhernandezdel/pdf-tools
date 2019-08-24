@@ -1,5 +1,4 @@
 from PyPDF2 import PdfFileMerger, PdfFileReader
-import sys
 
 #
 # User input: N pdf files to merge
