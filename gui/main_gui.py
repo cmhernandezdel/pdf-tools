@@ -27,5 +27,8 @@ def start():
   # Set window title
   window.title("PDF tools")
 
+  # Set window size
+  window.geometry("400x300")
+
   # Init window
   window.mainloop()
