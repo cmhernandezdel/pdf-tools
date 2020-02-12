@@ -12,35 +12,26 @@ import sys
 # Example output: file.pdf without pages from 27 to 48 both included
 #
 
-with open(sys.argv[1], 'rb') as original_file:
+def deletePages(original_file, pages_to_remove):
   reader = PdfFileReader(original_file)
   writer = PdfFileWriter()
   output_path = "file_with_deleted_pages.pdf"
 
-  # Case of certain pages
-  if "-" not in sys.argv[2]:
+  # Write the file without the pages
+  for i in range(reader.getNumPages()):
+    if i not in pages_to_remove:
+      writer.addPage(reader.getPage(i))
 
-    # Get the pages we want to remove (-1 because users start counting from 1)
-    pages_to_remove = []
-    for page in sys.argv[2:]:
-      pages_to_remove.append(int(page) - 1)
+  # Output the file
+  with open(output_path, 'wb') as output_file:
+    writer.write(output_file)
 
-    # Write the file without the pages
-    for i in range(reader.getNumPages()):
-      if i not in pages_to_remove:
-        writer.addPage(reader.getPage(i))
-
+def deleteRange(original_file, startingPage, endingPage):
   # Case of range of pages  
-  else:
-    # Get the starting and ending pages (-1 because users start counting from 1)
-    first_page_removed = int(sys.argv[2].split("-")[0]) - 1
-    last_page_removed = int(sys.argv[2].split("-")[1]) - 1
-
-    # Write the file without the pages
-    for i in range(reader.getNumPages()):
-      if i < first_page_removed or i > last_page_removed:
-        writer.addPage(reader.getPage(i))
-
-# Output the file
+  # Write the file without the pages
+  for i in range(reader.getNumPages()):
+    if i < first_page_removed or i > last_page_removed:
+      writer.addPage(reader.getPage(i))
+  # Output the file
   with open(output_path, 'wb') as output_file:
     writer.write(output_file)

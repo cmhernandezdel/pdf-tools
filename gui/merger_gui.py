@@ -19,6 +19,7 @@ def add_file(root):
 
 def show_merger_dialog(root):
   merger_gui_window = Toplevel(root)
+  merger_gui_window.geometry("400x300")
   add_button = Button(merger_gui_window, text="Add file", command=lambda: add_file(merger_gui_window))
   merge_button = Button(merger_gui_window, text="Merge files", command=lambda: merge_files(filenames))
   add_button.pack()
