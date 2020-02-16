@@ -27,10 +27,13 @@ def deletePages(original_file, pages_to_remove):
     writer.write(output_file)
 
 def deleteRange(original_file, startingPage, endingPage):
+  reader = PdfFileReader(original_file)
+  writer = PdfFileWriter()
+  output_path = "file_with_deleted_pages.pdf"
   # Case of range of pages  
   # Write the file without the pages
   for i in range(reader.getNumPages()):
-    if i < first_page_removed or i > last_page_removed:
+    if i < startingPage or i > endingPage:
       writer.addPage(reader.getPage(i))
   # Output the file
   with open(output_path, 'wb') as output_file:
