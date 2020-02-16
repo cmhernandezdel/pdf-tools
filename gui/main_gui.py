@@ -1,6 +1,7 @@
 from tkinter import Tk, Menu
 from gui.merger_gui import show_merger_dialog
 from gui.splitter_gui import show_splitter_dialog
+from gui.deleter_gui import show_deleter_dialog
 
 # Definitions
 def present_layout(option):
@@ -15,7 +16,7 @@ def start():
   functions_menu = Menu(menu_bar, tearoff=0)
   functions_menu.add_command(label="Merge PDFs", command=lambda: show_merger_dialog(window))
   functions_menu.add_command(label="Split PDF", command=lambda: show_splitter_dialog(window))
-  functions_menu.add_command(label="Delete pages", command=present_layout)
+  functions_menu.add_command(label="Delete pages from PDF", command=lambda: show_deleter_dialog(window))
   functions_menu.add_command(label="Extract part of a PDF", command=present_layout)
 
   # Add menus to the menubar

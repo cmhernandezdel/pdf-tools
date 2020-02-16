@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Button, Text
+from tkinter import Toplevel, Button, Text, Label
 from tkinter import filedialog
 from tkinter import END
 
@@ -10,11 +10,12 @@ from logic.merger import merge_files
 
 filenames = []
 
+# Add files to the files list to merge
 def add_file(root):
   filename = filedialog.askopenfilename()
-  file_label = Text(root, height=1, width=30)
+  file_label = Label(root, height=1, width=100)
   file_label.pack()
-  file_label.insert(END, filename)
+  file_label.config(text=filename)
   filenames.append(filename)
 
 def show_merger_dialog(root):
